@@ -38,6 +38,9 @@ class Mabac
         foreach ($matriks as $index => $item) {
             $column = [];
 
+            // Add 'alternative_id' as the first column
+            $column['alternative_id'] = $item->alternative_id;
+
             // Check if criteria_id is not null
             if (!is_null($item->criteria_id)) {
                 $criteriaKey = 'K' . str_pad($item->criteria_id, 2, '0', STR_PAD_LEFT);
@@ -66,9 +69,11 @@ class Mabac
 
 
 
+
     public function matrix_keputusan($data_bobot_alternatif)
     {
         $container = [];
+
         if (!empty($data_bobot_alternatif)) {
             foreach ($data_bobot_alternatif as $alternatifData) {
                 $column = [];
@@ -84,7 +89,7 @@ class Mabac
                 }
 
                 // Assuming 'Kode' is a key in your $alternatifData
-                $container[$alternatifData['Kode']] = $column;
+                $container[$alternatifData['alternative_id']] = $column;
             }
         }
         $this->getMaxMin($container);

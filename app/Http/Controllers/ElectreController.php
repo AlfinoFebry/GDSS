@@ -23,6 +23,7 @@ class ElectreController extends Controller
                 ->get();
 
         $array = $electre->toArray($matriks);
+        print_r($array);
         $normalized = $electre->normalizedMatrix($array);
         $preferensi = $electre->weightingNormalizedMatrix($normalized, $weight);
 

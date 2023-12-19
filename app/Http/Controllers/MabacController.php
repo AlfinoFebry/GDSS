@@ -13,6 +13,7 @@ class MabacController extends Controller
         $metode = new Mabac();
 
         $bobot_alternatif = $metode->bobot_alternatif();
+        print_r($bobot_alternatif);
         $metode->matrix_keputusan($bobot_alternatif);
         $matrix_normalisasi = $metode->matrik_normalisasi;
         $matrik_retimbang = $metode->matrik_retimbang;
