@@ -15,7 +15,7 @@ class AlternativesSeeder extends Seeder
     {
         $data = [];
 
-        for ($i = 0; $i < 35; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $data[] = ['nama' => 'A' . $i+1];
         }
     

@@ -8,7 +8,7 @@ class Electre
     public function toArray($matrix)
     {
         foreach ($matrix as $m) {
-            $result[$m->alternative_id][$m->criteria_id] = $m->value;
+            $result[$m->alternatives_id][$m->criterias_id] = $m->value;
         }
 
         return $result;
@@ -36,7 +36,7 @@ class Electre
     {
         for ($i = 1; $i <= count($nMatrix[1]); $i++) { // criteria
             for ($j = 1; $j <= count($nMatrix); $j++) { // alternative
-                $v[$j][$i] = $nMatrix[$j][$i] * $criterias[$i - 1]->weight;
+                $v[$j][$i] = $nMatrix[$j][$i] * $criterias[$i - 1]->bobot1;
             }
         }
 
@@ -87,7 +87,7 @@ class Electre
             for ($l = 1; $l <= $m; $l++) {
                 if ($k != $l && count($c[$k][$l])) {
                     foreach ($c[$k][$l] as $j) {
-                        $C[$k][$l] = (isset($C[$k][$l]) ? $C[$k][$l] : 0) + $criterias[$j - 1]->weight;
+                        $C[$k][$l] = (isset($C[$k][$l]) ? $C[$k][$l] : 0) + $criterias[$j - 1]->bobot1;
                     }
                 }
             }
@@ -184,4 +184,5 @@ class Electre
 
         return $E;
     }
+    
 }

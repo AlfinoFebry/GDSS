@@ -11,14 +11,14 @@ class ElectreController extends Controller
     public function index()
     {
         $electre = new Electre();
-        $matriks = DB::table('electre_evaluations')
+        $matriks = DB::table('evaluations')
                 ->select('*')
-                ->orderBy('alternative_id')
-                ->orderBy('criteria_id')
+                ->orderBy('alternatives_id')
+                ->orderBy('criterias_id')
                 ->get();
         
         $weight = DB::table('criterias')
-                ->select('weight')
+                ->select('bobot1')
                 ->orderBy('id')
                 ->get();
 
@@ -27,8 +27,8 @@ class ElectreController extends Controller
         $normalized = $electre->normalizedMatrix($array);
         $preferensi = $electre->weightingNormalizedMatrix($normalized, $weight);
 
-        $m = 5;
-        $n = 5;
+        $m = 30;
+        $n = 8;
         $index = $electre->findConcordanceDiscordanceIndex($preferensi, $m, $n);
 
         $concordancematrix = $electre->findConcordanceMatrix($index['concordance'], $weight, $m);

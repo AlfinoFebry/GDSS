@@ -16,13 +16,14 @@ class Mabac
 
     private $max_bobot = [];
     private $min_bobot = [];
+    private $bobot_kriteria = [];
     
     public function bobot_alternatif()
     {
         $data_alternatif = array();
 
         // Fetch data from the electre_evaluations table
-        $matriks = DB::table('electre_evaluations')
+        $matriks = DB::table('evaluations')
             ->select('*')
             ->orderBy('alternative_id')
             ->orderBy('criteria_id')
@@ -30,7 +31,7 @@ class Mabac
 
         // Fetch weights from the criterias table
         $weights = DB::table('criterias')
-            ->select('weight')
+            ->select('bobot2')
             ->orderBy('id')
             ->get();
 
@@ -65,9 +66,6 @@ class Mabac
 
         return $data_alternatif;
     }
-
-
-
 
 
     public function matrix_keputusan($data_bobot_alternatif)
