@@ -196,13 +196,23 @@ class Mabac
     public function matrix_rangking($matrix_Q)
     {
        if(!empty($matrix_Q)){
-            $container = [];    
-            foreach($matrix_Q as $i=> $alternatif){
-                $Q = 0;
-                foreach($alternatif as $j => $kriteria){
-                    $Q+=$matrix_Q[$i][$j];
+            // $container = [];    
+            // foreach($matrix_Q as $i=> $alternatif){
+            //     $Q = 0;
+            //     foreach($alternatif as $j => $kriteria){
+            //         $Q+=$matrix_Q[$i][$j];
+            //     }
+            //     $container[$i]=$Q;
+            // }
+            $container = [];
+            for($i = 1; $i <= count($matrix_Q); $i++){
+                $temp = 0;
+                for($j = 0; $j < count($matrix_Q[$i]); $j++){
+                    
+                    $temp += ($matrix_Q[$i][$j]);
+                   
                 }
-                $container[$i]=$Q;
+                $container[$i] = $temp;
             }
             return $container;
         }
