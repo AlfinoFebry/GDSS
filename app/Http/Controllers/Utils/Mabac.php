@@ -168,7 +168,7 @@ class Mabac
         foreach ($data as $item) {
             $g *= $item;
         }
-        return round(pow($g, 1/31),3);
+        return round(pow($g, 1/30),3);
     }
 
     public function matrix_Q($matrix_tertimbang, $matrix_perbatasan)
