@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="nav-item">
-          <a href="{{url('result')}}" class="nav-link">
+          <a href="{{url('gdss')}}" class="nav-link">
               <i class="nav-icon fas fa-chart-line"></i>
               <p>
                 GDSS Result
