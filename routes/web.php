@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlternativesController;
+use App\Http\Controllers\CriteriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ElectreController;
 use App\Http\Controllers\MabacController;
@@ -20,3 +22,5 @@ Route::get('/', function () {
 });
 Route::get('/electre', [ElectreController::class, 'index']);
 Route::get('/mabac', [MabacController::class, 'index']);
+Route::get('/criterias', [CriteriasController::class, 'index']);
+Route::get('/alternatives', [AlternativesController::class, 'index']);

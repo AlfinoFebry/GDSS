@@ -13,7 +13,9 @@ class CriteriasController extends Controller
      */
     public function index()
     {
-        //
+        $criterias = criterias::all();
+
+        return view('criteria.index', compact('criterias'));
     }
 
     /**

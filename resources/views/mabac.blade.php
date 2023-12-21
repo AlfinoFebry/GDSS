@@ -27,8 +27,24 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
-                    <!-- Similar structure to previous tables, adjust accordingly -->
-                    <!-- Use $bobot_alternatif and adjust variable names as needed -->
+                <thead>
+                        <tr>
+                            <th></th>
+                            @foreach (array_keys(reset($matriks_keputusan)) as $criteria)
+                                <th>K{{ $criteria+1 }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($matriks_keputusan as $alternative => $criteriaValues)
+                            <tr>
+                                <th>A{{ $alternative }}</th> <!-- Add 'a' here -->
+                                @foreach ($criteriaValues as $value)
+                                    <td>{{ $value }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -45,8 +61,24 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
-                    <!-- Similar structure to previous tables, adjust accordingly -->
-                    <!-- Use $matrix_normalisasi and adjust variable names as needed -->
+                <thead>
+                        <tr>
+                            <th></th>
+                            @foreach (array_keys(reset($matrix_normalisasi)) as $criteria)
+                                <th>K{{ $criteria + 1 }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($matrix_normalisasi as $alternative => $criteriaValues)
+                            <tr>
+                                <th>A{{ $alternative }}</th> <!-- Add 'a' here -->
+                                @foreach ($criteriaValues as $value)
+                                    <td>{{ $value }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -63,8 +95,24 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
-                    <!-- Similar structure to previous tables, adjust accordingly -->
-                    <!-- Use $matrik_retimbang and adjust variable names as needed -->
+                <thead>
+                        <tr>
+                            <th></th>
+                            @foreach (array_keys(reset($matrik_retimbang)) as $criteria)
+                                <th>K{{ $criteria + 1 }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($matrik_retimbang as $alternative => $criteriaValues)
+                            <tr>
+                                <th>A{{ $alternative }}</th> <!-- Add 'a' here -->
+                                @foreach ($criteriaValues as $value)
+                                    <td>{{ $value }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -81,8 +129,18 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
-                    <!-- Similar structure to previous tables, adjust accordingly -->
-                    <!-- Use $matrik_perbatasan and adjust variable names as needed -->
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <!-- Add your table header if needed -->
+                    </thead>
+                    <tbody>
+                        @foreach ($matrik_perbatasan as $alternative => $value)
+                            <tr>
+                                <th>A{{ $alternative }}</th>
+                                <td>{{ $value }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -99,8 +157,24 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
-                    <!-- Similar structure to previous tables, adjust accordingly -->
-                    <!-- Use $matrik_Q and adjust variable names as needed -->
+                <thead>
+                        <tr>
+                            <th></th>
+                            @foreach (array_keys(reset($matrik_Q)) as $criteria)
+                                <th>K{{ $criteria + 1 }}</th>
+                            @endforeach
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($matrik_Q as $alternative => $criteriaValues)
+                            <tr>
+                                <th>A{{ $alternative }}</th> <!-- Add 'a' here -->
+                                @foreach ($criteriaValues as $value)
+                                    <td>{{ $value }}</td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -117,8 +191,17 @@
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">
-                    <!-- Similar structure to previous tables, adjust accordingly -->
-                    <!-- Use $matrik_rangking and adjust variable names as needed -->
+                    <thead>
+                        <!-- Add your table header if needed -->
+                    </thead>
+                    <tbody>
+                        @foreach ($matrik_rangking as $alternative => $value)
+                            <tr>
+                                <th>A{{ $alternative }}</th>
+                                <td>{{ $value }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

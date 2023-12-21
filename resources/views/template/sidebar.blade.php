@@ -24,7 +24,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-          <a href="{{url('home')}}" class="nav-link">
+          <a href="{{url('/')}}" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('criteriaweights')}}" class="nav-link">
+            <a href="{{url('criterias')}}" class="nav-link">
               <i class="nav-icon fas fa-cube"></i>
               <p>
                 Criteria

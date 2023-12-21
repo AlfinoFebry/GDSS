@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\utils\Mabac;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MabacController extends Controller
 {
@@ -12,17 +13,25 @@ class MabacController extends Controller
         # code...
         $metode = new Mabac();
 
-        $bobot_alternatif = $metode->bobot_alternatif();
-        print_r($bobot_alternatif);
-        $metode->matrix_keputusan($bobot_alternatif);
-        $matrix_normalisasi = $metode->matrik_normalisasi;
-        $matrik_retimbang = $metode->matrik_retimbang;
-        $matrik_perbatasan = $metode->matrik_perbatasan;
-        $matrik_Q = $metode->matrik_Q;
-        $matrik_rangking = $metode->hasil_rangking;
+        $weights = DB::table('criterias')
+            ->select('bobot2')
+            ->orderBy('id')
+            ->get()
+            ->pluck('bobot2')
+            ->toArray();
+
+        $matriks_keputusan = $metode->matrix_keputusan();
+        $max_bobot = $metode->getMax($matriks_keputusan);
+        $min_bobot = $metode->getMin($matriks_keputusan);
+        $matrix_normalisasi = $metode->matrix_normalisasi($matriks_keputusan, $max_bobot, $min_bobot);
+        $matrik_retimbang = $metode->matrix_tertimbang($matrix_normalisasi, $weights);
+        $matrik_perbatasan = $metode->matrix_perbatasan($matrik_retimbang);
+        $matrik_Q = $metode->matrix_Q($matrik_retimbang, $matrik_perbatasan);
+        $matrik_rangking = $metode->matrix_rangking($matrik_Q);
+        print_r($matrik_Q);
         arsort($matrik_rangking);
         return view('mabac', [
-            'bobot_alternatif'=>$bobot_alternatif,
+            'matriks_keputusan'=>$matriks_keputusan,
             'matrix_normalisasi'=>$matrix_normalisasi,
             'matrik_retimbang'=>$matrik_retimbang,
             'matrik_perbatasan'=>$matrik_perbatasan,
