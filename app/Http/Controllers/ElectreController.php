@@ -12,22 +12,22 @@ class ElectreController extends Controller
     {
         $electre = new Electre();
         $matriks = DB::table('evaluations')
-                ->select('*')
-                ->orderBy('alternatives_id')
-                ->orderBy('criterias_id')
-                ->get();
-        
+            ->select('*')
+            ->orderBy('alternatives_id')
+            ->orderBy('criterias_id')
+            ->get();
+
         $weight = DB::table('criterias')
-                ->select('bobot1')
-                ->orderBy('id')
-                ->get();
+            ->select('bobot1')
+            ->orderBy('id')
+            ->get();
 
         $array = $electre->toArray($matriks);
         print_r($array);
         $normalized = $electre->normalizedMatrix($array);
         $preferensi = $electre->weightingNormalizedMatrix($normalized, $weight);
 
-        $m = 30;
+        $m = 35;
         $n = 8;
         $index = $electre->findConcordanceDiscordanceIndex($preferensi, $m, $n);
 
@@ -39,10 +39,23 @@ class ElectreController extends Controller
 
         $concordanceDominance = $electre->findConcordanceDominance($concordancematrix, $concordanceThreshold);
         $discordanceDominance = $electre->findDiscordanceDominance($disordancematrix, $discordanceThreshold);
-        $aggregateDominance = $electre->findAggregateDominance($concordanceDominance, $discordanceDominance);  
+        $aggregateDominance = $electre->findAggregateDominance($concordanceDominance, $discordanceDominance);
+
+        $aggregateRanking = [];
+        foreach ($aggregateDominance as $alternative => $criteriaValues) {
+            $aggregateRanking[$alternative] = array_sum($criteriaValues);
+        }
+
+        arsort($aggregateRanking);
+
+        $ranking = [];
+        $rank = 1;
+        foreach ($aggregateRanking as $alternative => $total) {
+            $ranking[$alternative] = $rank++;
+        }
 
         return view('electre', [
-            'array'=> $array, 
+            'array' => $array,
             'normalized' => $normalized,
             'weight' => $weight,
             'preferensi' => $preferensi,
@@ -55,6 +68,8 @@ class ElectreController extends Controller
             'concordanceDominance' => $concordanceDominance,
             'discordanceDominance' => $discordanceDominance,
             'aggregateDominance' => $aggregateDominance,
+            'ranking' => $ranking,
+            'aggregateRanking' => $aggregateRanking,
         ]);
     }
 }
