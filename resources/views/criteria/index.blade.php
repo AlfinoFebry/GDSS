@@ -34,44 +34,23 @@
                               </div>
                             @endif
 
-                            <a href="{{route('criteriaweights.create')}}" class='btn btn-primary'> <span
-                                    class='fa fa-plus'></span> Add Criteria</a>
                             <br>
                             <table id="mytable" class="display nowrap table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Type</th>
-                                        <th>Weight</th>
-                                        <th>Description</th>
-                                        <th>Action</th>
+                                        <th>bobot DM1</th>
+                                        <th>Bbobot DM2</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($criteriaweights as $c)
+                                    @foreach ($criterias as $c)
                                     <tr>
-                                        <td>{{ ++$i }}</td>
-                                        <td>{{ $c->name}}</td>
-                                        <td>{{ $c->type}}</td>
-                                        <td>{{ $c->weight}}</td>
-                                        <td>{{ $c->description}}</td>
-                                        <td>
-                                            <form action="{{ route('criteriaweights.destroy',$c->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <span data-toggle="tooltip" data-placement="bottom" title="Edit Data">
-                                                    <a href="{{ route('criteriaweights.edit',$c->id) }}"
-                                                        class="btn btn-primary"><span class="fa fa-edit"></span>
-                                                    </a>
-                                                </span>
-                                                <span data-toggle="tooltip" data-placement="bottom" title="Delete Data">
-                                                    <button type="submit" class="btn btn-danger">
-                                                        <span class="fa fa-trash-alt"></span>
-                                                    </button>
-                                                </span>
-                                            </form>
-                                        </td>
+                                        <td>{{ $c->id }}</td>
+                                        <td>{{ $c->nama}}</td>
+                                        <td>{{ $c->bobot1}}</td>
+                                        <td>{{ $c->bobot2}}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -91,23 +70,4 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-@endsection
-
-@section('script')
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-
-        $('#mytable').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-        });
-    });
-
-</script>
 @endsection
