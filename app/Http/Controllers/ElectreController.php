@@ -23,11 +23,10 @@ class ElectreController extends Controller
             ->get();
 
         $array = $electre->toArray($matriks);
-        print_r($array);
         $normalized = $electre->normalizedMatrix($array);
         $preferensi = $electre->weightingNormalizedMatrix($normalized, $weight);
 
-        $m = 35;
+        $m = 30;
         $n = 8;
         $index = $electre->findConcordanceDiscordanceIndex($preferensi, $m, $n);
 
