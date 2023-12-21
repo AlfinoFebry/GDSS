@@ -174,7 +174,6 @@ class Mabac
     public function matrix_Q($matrix_tertimbang, $matrix_perbatasan)
     {
         if (!empty($matrix_tertimbang) && !empty($matrix_perbatasan)) {
-            print_r($matrix_perbatasan);
             foreach ($matrix_tertimbang as $i => $data_alternatif) {
                 foreach ($data_alternatif as $j => $data_kriteria) {
                     // Check if the key exists in $matrix_perbatasan before accessing it
