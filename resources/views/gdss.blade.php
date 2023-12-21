@@ -30,18 +30,20 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Alternative</th>
-                                </tr>
+                                <th>Rank</th>
+                                <th>Alternatif</th>\
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach
+                            @php
+                                $rank = 1;
+                            @endphp
+                            @foreach ($mabacRanking as $alternative => $value)
                                 <tr>
-                                    <th></th>
+                                    <td>{{ $rank++ }}</td>
+                                    <td>A{{ $alternative }}</td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -64,21 +66,23 @@
                 <div class="card-body">
 
                     <table class="table table-bordered table-striped">
-                        <thead>
+                    <thead>
                             <tr>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Alternative</th>
-                                </tr>
+                                <th>Rank</th>
+                                <th>Alternatif</th>\
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach
+                            @php
+                                $rank = 1;
+                            @endphp
+                            @foreach ($electreRanking as $alternative => $value)
                                 <tr>
-                                    <th></th>
+                                    <td>{{ $rank++ }}</td>
+                                    <td>A{{ $alternative }}</td>
                                 </tr>
-                            @endforeach --}}
-                        </tbody>
+                            @endforeach
+                        </tbody
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -100,20 +104,24 @@
                 <div class="card-body">
 
                     <table class="table table-bordered table-striped">
-                        <thead>
+                    <thead>
                             <tr>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Alternative</th>
-                                </tr>
+                                <th>Rank</th>
+                                <th>Alternatif</th>
+                                <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach
+                            @php
+                                $rank = 1;
+                            @endphp
+                            @foreach ($gdssRanking as $alternative => $value)
                                 <tr>
-                                    <th></th>
+                                    <td>{{ $rank++ }}</td>
+                                    <td>A{{ $alternative }}</td>
+                                    <td>{{ $value }}</td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -26,7 +26,7 @@ class ElectreController extends Controller
         $normalized = $electre->normalizedMatrix($array);
         $preferensi = $electre->weightingNormalizedMatrix($normalized, $weight);
 
-        $m = 30;
+        $m = 31;
         $n = 8;
         $index = $electre->findConcordanceDiscordanceIndex($preferensi, $m, $n);
 
