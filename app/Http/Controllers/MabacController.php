@@ -29,7 +29,6 @@ class MabacController extends Controller
         $matrik_Q = $metode->matrix_Q($matrik_retimbang, $matrik_perbatasan);
         $matrik_rangking = $metode->matrix_rangking($matrik_Q);
         arsort($matrik_rangking);
-        
         return view('mabac', [
             'matriks_keputusan'=>$matriks_keputusan,
             'matrix_normalisasi'=>$matrix_normalisasi,

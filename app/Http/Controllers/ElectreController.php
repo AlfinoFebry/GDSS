@@ -52,7 +52,6 @@ class ElectreController extends Controller
         foreach ($aggregateRanking as $alternative => $total) {
             $ranking[$alternative] = $rank++;
         }
-
         return view('electre', [
             'array' => $array,
             'normalized' => $normalized,

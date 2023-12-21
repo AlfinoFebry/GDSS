@@ -17,9 +17,12 @@ class GdssController extends Controller
 
         $electreRanking = $this->mabac_ranking();
 
+        $gdssRanking = $this->gdss_rangking($electreRanking, $mabacRanking);
+
         return view('gdss', [
             'mabacRanking' => $mabacRanking,
             'electreRanking' => $electreRanking,
+            'gdssRanking' => $gdssRanking,
         ]);
     }
 
@@ -94,7 +97,24 @@ class GdssController extends Controller
         return $matrik_rangking;
     }
 
-    public function gdss_rangking(){
+    public function gdss_rangking($electreRanking, $mabacRanking){
+
+        // Edit the values in the array based on the mapping
+        foreach ($mabacRanking as $index => &$value) {
+            $value = 30 - $mabacRanking[$index];
+        }
         
+        $temp = 1;
+        foreach ($electreRanking as $index => &$value) {
+            $newValue = 30 - $temp;
+            $temp++;
+            $value = $newValue;
+        }
+        $final_rank= [];
+        foreach ($mabacRanking as $index => $value) {
+            $final_rank[$index] = $mabacRanking[$index] + $electreRanking[$index];
+        }   
+        return $final_rank;
+
     }
 }
