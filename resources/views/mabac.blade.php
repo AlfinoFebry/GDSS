@@ -134,14 +134,15 @@
                                 <!-- Add your table header if needed -->
                             </thead>
                             <tbody>
-                                @foreach ($matrik_perbatasan as $alternative => $value)
+                                @foreach ($matrik_perbatasan as $criteria => $value)
                                     <tr>
-                                        <th>A{{ $alternative }}</th>
+                                        <th>K{{ $criteria +1 }}</th>
                                         <td>{{ $value }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                    </table>
                 </div>
             </div>
 

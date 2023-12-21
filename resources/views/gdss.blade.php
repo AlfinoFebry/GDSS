@@ -14,6 +14,7 @@
 
         <!-- Main content -->
         <section class="content">
+            
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
@@ -28,22 +29,25 @@
                 <div class="card-body">
 
                     <table class="table table-bordered table-striped">
-                        <thead>
+                    <thead>
                             <tr>
                                 <th>Rank</th>
-                                <th>Alternatif</th>\
+                                <th>Electre</th>
+                                <th>Mabac</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $rank = 1;
                             @endphp
-                            @foreach ($mabacRanking as $alternative => $value)
+                            @for ($i =1; $i <= 30; $i++)
                                 <tr>
                                     <td>{{ $rank++ }}</td>
-                                    <td>A{{ $alternative }}</td>
+                                    <td>A{{ $electreRanking[$i] }}</td>
+                                    <td>A{{ $mabacRanking[$i] }}</td>
                                 </tr>
-                            @endforeach
+                            @endfor
+                            
                         </tbody>
                     </table>
                 </div>
@@ -66,23 +70,23 @@
                 <div class="card-body">
 
                     <table class="table table-bordered table-striped">
-                    <thead>
+                        <thead>
                             <tr>
                                 <th>Rank</th>
-                                <th>Alternatif</th>\
+                                <th>Alternatif</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $rank = 1;
                             @endphp
-                            @foreach ($electreRanking as $alternative => $value)
+                            @foreach ($mabacRanking as $alternative => $value)
                                 <tr>
                                     <td>{{ $rank++ }}</td>
                                     <td>A{{ $alternative }}</td>
                                 </tr>
                             @endforeach
-                        </tbody
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.card-body -->
