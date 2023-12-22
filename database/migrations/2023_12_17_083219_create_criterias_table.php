@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama', 30);
             $table->float('bobot1');
             $table->float('bobot2');
+            $table->float('bobotConcordance');
             $table->timestamps();
         });
     }

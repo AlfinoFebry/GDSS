@@ -126,10 +126,8 @@
                         <tbody>
                             <tr>
                                 <th>Weight</th>
-                                @foreach ($weight as $criteriaWeight => $criteriaValues)
-                                    @foreach ($criteriaValues as $value)
-                                        <td>{{ $value }}</td>
-                                    @endforeach
+                                @foreach ($weight as $criteriaWeight )
+                                    <td>{{ $criteriaWeight->bobot1 }}</td>
                                 @endforeach
                             </tr>
                         </tbody>

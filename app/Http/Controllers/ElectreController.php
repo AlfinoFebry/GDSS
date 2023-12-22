@@ -18,7 +18,7 @@ class ElectreController extends Controller
             ->get();
 
         $weight = DB::table('criterias')
-            ->select('bobot1')
+            ->select('*')
             ->orderBy('id')
             ->get();
 
@@ -32,7 +32,8 @@ class ElectreController extends Controller
 
         $concordancematrix = $electre->findConcordanceMatrix($index['concordance'], $weight, $m);
         $disordancematrix = $electre->findDiscordanceMatrix($preferensi, $index['discordance'], $m, $n);
-
+        
+        $rankElectre = $electre->electreRanking($concordancematrix, $disordancematrix);
         $concordanceThreshold = $electre->findThresholdC($concordancematrix, $m);
         $discordanceThreshold = $electre->findThresholdD($disordancematrix, $m);
 
@@ -45,11 +46,11 @@ class ElectreController extends Controller
             $aggregateRanking[$alternative] = array_sum($criteriaValues);
         }
 
-        arsort($aggregateRanking);
+        arsort($rankElectre);
 
         $ranking = [];
         $rank = 1;
-        foreach ($aggregateRanking as $alternative => $total) {
+        foreach ($rankElectre as $alternative => $total) {
             $ranking[$alternative] = $rank++;
         }
         return view('electre', [
@@ -67,7 +68,7 @@ class ElectreController extends Controller
             'discordanceDominance' => $discordanceDominance,
             'aggregateDominance' => $aggregateDominance,
             'ranking' => $ranking,
-            'aggregateRanking' => $aggregateRanking,
+            'aggregateRanking' => $rankElectre,
         ]);
     }
 }

@@ -184,5 +184,28 @@ class Electre
 
         return $E;
     }
+
+    public function sumValues($array)
+    {
+        return array_sum($array);
+    }
+
+    public function electreRanking($concordance, $discordance)
+    {
+        // Calculate sums for concordance and discordance
+        $sumsCon = array_map([$this, 'sumValues'], $concordance);
+        $sumsDis = array_map([$this, 'sumValues'], $discordance);
+
+        // Calculate the ranking for each key
+        $ranking = [];
+        foreach ($sumsCon as $key => $sumCon) {
+            $sumDis = $sumsDis[$key] ?? 0; // Ensure there's a corresponding discordance sum
+            $ranking[$key] = $sumCon - $sumDis;
+        }
+
+        return $ranking;
+    }
+
+    
     
 }

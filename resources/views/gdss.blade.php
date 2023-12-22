@@ -18,7 +18,7 @@
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Rank Mabac</h3>
+                    <h3 class="card-title">Rank DSS</h3>
 
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -37,55 +37,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $rank = 1;
-                            @endphp
-                            @for ($i =1; $i <= 30; $i++)
-                                <tr>
-                                    <td>{{ $rank++ }}</td>
-                                    <td>A{{ $electreRanking[$i] }}</td>
-                                    <td>A{{ $mabacRanking[$i] }}</td>
-                                </tr>
-                            @endfor
-                            
-                        </tbody>
-                    </table>
-                </div>
-                <!-- /.card-body -->
-
-            </div>
-            <!-- /.card -->
-
-            <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Rank Electre</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-
-                    <table class="table table-bordered table-striped">
-                        <thead>
+                        @php
+                            $rank = 1;
+                        @endphp
+                        @foreach ($electreRanking as $key => $value)
                             <tr>
-                                <th>Rank</th>
-                                <th>Alternatif</th>
+                                <td>{{ $rank++ }}</td>
+                                <td>A{{ $key }}</td>
+                                <td>A{{ $resultMabac[$rank-2] }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $rank = 1;
-                            @endphp
-                            @foreach ($mabacRanking as $alternative => $value)
-                                <tr>
-                                    <td>{{ $rank++ }}</td>
-                                    <td>A{{ $alternative }}</td>
-                                </tr>
-                            @endforeach
+                        @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -93,6 +55,7 @@
 
             </div>
             <!-- /.card -->
+
 
             <!-- Default box -->
             <div class="card">
@@ -112,7 +75,6 @@
                             <tr>
                                 <th>Rank</th>
                                 <th>Alternatif</th>
-                                <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,7 +85,7 @@
                                 <tr>
                                     <td>{{ $rank++ }}</td>
                                     <td>A{{ $alternative }}</td>
-                                    <td>{{ $value }}</td>
+                                    <!-- <td>{{ $value }}</td> -->
                                 </tr>
                             @endforeach
                         </tbody>

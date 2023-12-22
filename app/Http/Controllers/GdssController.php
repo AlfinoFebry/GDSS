@@ -19,7 +19,13 @@ class GdssController extends Controller
 
         $gdssRanking = $this->gdss_rangking($electreRanking, $mabacRanking);
 
+        $resultMabac = [];
+        foreach ($mabacRanking as $key => $value) {
+            $resultMabac[] = $key;
+        }
+
         return view('gdss', [
+            'resultMabac' => $resultMabac,
             'mabacRanking' => $mabacRanking,
             'electreRanking' => $electreRanking,
             'gdssRanking' => $gdssRanking,
@@ -35,7 +41,7 @@ class GdssController extends Controller
             ->get();
 
         $weight = DB::table('criterias')
-            ->select('bobot1')
+            ->select('*')
             ->orderBy('id')
             ->get();
 
@@ -56,21 +62,20 @@ class GdssController extends Controller
         $concordanceDominance = $electre->findConcordanceDominance($concordancematrix, $concordanceThreshold);
         $discordanceDominance = $electre->findDiscordanceDominance($disordancematrix, $discordanceThreshold);
         $aggregateDominance = $electre->findAggregateDominance($concordanceDominance, $discordanceDominance);
-
+        $rankElectre = $electre->electreRanking($concordancematrix, $disordancematrix);
         $aggregateRanking = [];
         foreach ($aggregateDominance as $alternative => $criteriaValues) {
             $aggregateRanking[$alternative] = array_sum($criteriaValues);
         }
 
-        arsort($aggregateRanking);
+        arsort($rankElectre);
 
         $ranking = [];
         $rank = 1;
-        foreach ($aggregateRanking as $alternative => $total) {
+        foreach ($rankElectre as $alternative => $total) {
             $ranking[$alternative] = $rank++;
         }
-
-        return $ranking;
+        return $rankElectre;
     }
 
     public function mabac_ranking(){
